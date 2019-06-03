@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+	name="Cinder-FlyCapture"
+	id="com.redpaperheart.flycapture"
+  git="git@github.com:redpaperheart/Cinder-FlyCapture"
+	author="Red Paper Heart"
+	summary="Classes for using the Point Grey Research /Flir Fly Capture SDK"
+  version="0.5"
+  url="https://github.com/redpaperheart/Cinder-FlyCapture"
+	git="https://github.com/redpaperheart/Cinder-FlyCapture.git"
+	>
+  <supports os="msw" />
+  <includePath>src</includePath>
+  <sourcePattern>src/*.cpp</sourcePattern>
+  <headerPattern>src/*.h</headerPattern>
+  <!-- <includePath absolute="true">C:/Program Files/Point Grey Research/Spinnaker/include</includePath> -->
+  <!-- include spinnaker sources -->
+  <!-- <sourcePattern absolute="true">C:/Program Files/Point Grey Research/Spinnaker/include/*.cpp</sourcePattern>
+  <headerPattern absolute="true">C:/Program Files/Point Grey Research/Spinnaker/include/*.h</headerPattern>
+  <sourcePattern absolute="true">C:/Program Files/Point Grey Research/Spinnaker/include/SpinGenApi/*.cpp</sourcePattern>
+  <headerPattern absolute="true">C:/Program Files/Point Grey Research/Spinnaker/include/SpinGenApi/*.h</headerPattern>
+	<platform os="msw">
+    <platform config="release">
+      <libraryPath absolute="true">C:/Program Files/Point Grey Research/Spinnaker/lib64/vs2015</libraryPath>
+      <staticLibrary absolute="true">Spinnaker_v140.lib</staticLibrary>
+    </platform>
+    <platform config="debug">
+      <libraryPath absolute="true">C:/Program Files/Point Grey Research/Spinnaker/lib64/vs2015</libraryPath>
+      <staticLibrary absolute="true">Spinnaker_v140.lib</staticLibrary>
+    </platform>
+  </platform> -->
+</block>
+</cinder>
