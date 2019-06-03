@@ -5,8 +5,9 @@ Cinder block for integrating [Point Grey Research / Flir] FlyCapture SDK
 ##### Adding this block to Cinder
 This block was built with version 0.9.1, so 0.9.0 and up should work. This block is also only available on Windows since the FlyCapture SDK is Windows only. The SDK can also be used on Mac OSX using ```libdc1394```, however this block currently doesn't have that support. The latest/last Fly Capture SDK also only contains .dll files for x64 + toolset v140.
 
-* First get a Camera that uses the FlyCapture SDK (which might be tricky since most/all cameras that use the SDK have been discontinued), this block was built with a Point Grey [FireFly MV](https://www.visiononline.org/product-catalog-detail.cfm/FLIR-Systems-Inc/1-3-MP-Firefly-MV-USB-2-0-Camera/productid/3251) 0.3MP B&W. It looks like newer versions of the Firefly will use the Flir Spinnaker SDK instead.
+* First get a camera that uses the FlyCapture SDK (which might be tricky since most/all cameras that use the SDK have been discontinued), this block was built with a Point Grey [FireFly MV](https://www.visiononline.org/product-catalog-detail.cfm/FLIR-Systems-Inc/1-3-MP-Firefly-MV-USB-2-0-Camera/productid/3251) 0.3MP B&W. It looks like newer versions of the Firefly will use the Flir Spinnaker SDK instead.
 * Second, download the [FlyCapture SDK](https://www.flir.com/products/flycapture-sdk/)
+  - Also available from [here](https://flir.app.boxcn.net/v/Flycapture2SDK)
   - This block was built with SDK v 2.13.3.61_x64 but should work with newer versions as well
   - Some of the lib files are also included in this block repo, but installing the SDK also includes several samples of the code base and a sample preview app for testing cameras outside of Cinder
 * Add this block to your Cinder/blocks folder
