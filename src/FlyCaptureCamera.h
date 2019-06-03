@@ -17,8 +17,6 @@ FlyCaptureCamera.h
 #include "cinder/Log.h"
 
 #include "FlyCapture2.h"
-//#include <iostream>
-//#include <sstream>
 
 
 using namespace FlyCapture2;

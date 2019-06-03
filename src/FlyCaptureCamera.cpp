@@ -184,7 +184,7 @@ void FlyCaptureCamera::runSingleCamera(PGRGuid guid){
 
 	startCamera();
 }
-
+/*
 void FlyCaptureCamera::saveFramesToDisc(int numFrames){
 	for (int imageCnt = 0; imageCnt < numFrames; imageCnt++){
 		// Retrieve an image
@@ -215,6 +215,7 @@ void FlyCaptureCamera::saveFramesToDisc(int numFrames){
 		}
 	}
 }
+*/
 
 void FlyCaptureCamera::startCamera(){
 	// Start capturing images
