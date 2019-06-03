@@ -35,8 +35,9 @@ public:
 	void 							draw();
 
 	unsigned int 					mNumCameras; 
-	gl::TextureRef					mCamTexture;
+	
 	SurfaceRef						getCamSurface(){  return mCamSurface; }
+	gl::TextureRef					getCamTexture() { return mCamTexture; }
 	int								mFps;
 
 private:
@@ -46,7 +47,6 @@ private:
 	void 							runSingleCamera(PGRGuid guid);
 	void 							startCamera();
 	void 							stopCamera();
-	void 							saveFramesToDisc(int numFrames);
 	void							checkIfCamIsAvailable();
 
 	FlyCapture2::Camera 			mCam;
@@ -57,7 +57,8 @@ private:
 	unsigned int 					mCamImageRow;
 	unsigned int 					mCamImageCol;
 	Error 							mError;
-	SurfaceRef						mCamSurface; 
+	SurfaceRef						mCamSurface=nullptr;
+	gl::TextureRef					mCamTexture=nullptr;
 	unsigned char*					mCamPixelData;
 	Image							mRawImage;
 	Image							mConvertedImage;

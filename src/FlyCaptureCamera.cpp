@@ -7,6 +7,11 @@ void FlyCaptureCamera::setup(){
 	mCamResX = 640 ;
 	mCamResY = 480 ;
 	mFps = 30;
+
+	//setupo surface and texture
+	mCamSurface = Surface::create(mCamResX, mCamResY, false, SurfaceChannelOrder::RGBA);
+	mCamTexture = gl::Texture::create(*mCamSurface);
+
 	Error mError;
 
 	checkIfCamIsAvailable();
@@ -96,9 +101,6 @@ void FlyCaptureCamera::update(){
 		checkIfCamIsAvailable();
 	}
 
-
-	//mRawImage.SetDimensions(mCamResX, mCamResY, 0, PIXEL_FORMAT_RGBU, NONE);
-
 	if (mError != PGRERROR_OK){
 		printError(mError);
 	}
@@ -106,20 +108,28 @@ void FlyCaptureCamera::update(){
 	if (mError != PGRERROR_OK){
 		printError(mError);
 	}
-	
-	mCamSurface = Surface::create(mCamResX, mCamResY, false, SurfaceChannelOrder::RGBA);
+
+	//create surface if needed
+	if (mCamSurface==nullptr) {
+		mCamSurface = Surface::create(mCamResX, mCamResY, false, SurfaceChannelOrder::RGBA);
+	}
+	//copy the camera data tot he surface
 	mCamPixelData = mConvertedImage.GetData();
 	memcpy(mCamSurface->getData(), mCamPixelData, mCamResX * mCamResY * 4);
 
-	mCamTexture = gl::Texture::create(*mCamSurface);
-	//mCamTexture->
+	
+	if (mCamTexture==nullptr) {
+		//create texture
+		mCamTexture = gl::Texture::create(*mCamSurface);
+	}
+	else {
+		//or update
+		mCamTexture->update(*mCamSurface);
+	}
 }
 
 void FlyCaptureCamera::draw(){
-	gl::pushMatrices();
-	//gl::draw( gl::Texture2d::create( mCamSurface ), mCamSurface.getBounds() );
 	gl::draw( mCamTexture );
-	gl::popMatrices();
 }
 
 void FlyCaptureCamera::printBuildInfo(){

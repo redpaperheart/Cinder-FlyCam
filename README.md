@@ -1,31 +1,26 @@
-Cinder-Spinnaker
+Cinder-FlyCapture
 ===================
-Cinder block for integrating [Flir / Point Grey Research] Spinnaker SDK
+Cinder block for integrating [Point Grey Research / Flir] FlyCapture SDK
 
 ##### Adding this block to Cinder
-This block was built with version 0.9.1, so 0.9.0 and up should work. This block is also only available on Windows since the Spinnaker SDK is Windows only. The current Spinnaker SDK also only contains .dll files for x64 + toolset v140.
+This block was built with version 0.9.1, so 0.9.0 and up should work. This block is also only available on Windows since the FlyCapture SDK is Windows only. The SDK can also be used on Mac OSX using ```libdc1394```, however this block currently doesn't have that support. The latest/last Fly Capture SDK also only contains .dll files for x64 + toolset v140.
 
-* First get a Camera that uses the Spinnaker SDK, this block was built with a [Flir Blackfly S](https://www.flir.com/products/blackfly-s-usb3/?model=BFS-U3-31S4C-C) 3.2MP Color
-* Second download the [Spinnaker SDK](https://www.flir.com/products/spinnaker-sdk/)
-  - This block was built with SDK v 1.20.0.15 but should work with newer versions as well
-  - This block is also configured to work with the default Spinnaker SDK install location ```C:\Program Files\Point Grey Research\Spinnaker```
-  - If you install the SDK at a different path you'll want to update either the cinderblock.xml paths or modify the paths in VS after you create a project 
+* First get a Camera that uses the FlyCapture SDK (which might be tricky since most/all cameras that use the SDK have been discontinued), this block was built with a Point Grey [FireFly MV](https://www.visiononline.org/product-catalog-detail.cfm/FLIR-Systems-Inc/1-3-MP-Firefly-MV-USB-2-0-Camera/productid/3251) 0.3MP B&W. It looks like newer versions of the Firefly will use the Flir Spinnaker SDK instead.
+* Second, download the [FlyCapture SDK](https://www.flir.com/products/flycapture-sdk/)
+  - This block was built with SDK v 2.13.3.61_x64 but should work with newer versions as well
+  - Some of the lib files are also included in this block repo, but installing the SDK also includes several samples of the code base and a sample preview app for testing cameras outside of Cinder
 * Add this block to your Cinder/blocks folder
 * Use TinderBox and create a new Cinder project
 
-There are 2 different sample projects included with the block. SimpleSpinnaker is a very simple barebones example and AnotherSpinnaker shows starting/stopping the capture as well as changing camera options (framerate, auto exposure)
+There is a sample project included with the block.
 
 ##### Tips and Gotchas
-- If the SDK is installed in 
-- This was only tested with a Blackfly S which is color, has a high frame rate, and high resolution that is not configurable. Setting the frame rate to unsupported frame rates or resolutions for your camera may cause the app to crash
-- Most of the Spinnaker capturing happens in another thread and then a Surface is updated with memCopy back to the main thread. If that thread gets slowed down you may start to see the buffer get backed up and the video feed will start to lag. I currently don't have a solution for this except to just not slow down that thread. You can also try slowing down your camera frame rate.
+- The resolution and frame rate is hard coded to 640x480 30 fps, if your camera doesn't support those settings there may be complications.
+- The ```camera.RetrieveBuffer``` method is blocking so the camera update does it's own check for new frames on the same thread. This allows your app fps to be faster than the camera fps.
 
 ##### TODOS
-- test framerate and resolution values before attempting to set them
-- investigate image tearing: maybe caused from the thread memCopy to surface
-- adding a capture manager class to reconnect cameras when disconnected + connected
-- add functionality to query the cameras current exposure and gain levels
-- fix the gross filter paths for the Spinnaker SDK directories, adds a filter folder for each dir ```C:\Program Files\Point Grey Research\Spinnaker```
+- add configuration options, auto_exposure, fps, resolution
+- consider changing the update method + ```mLastFrameTime``` checks for when to get a new frame
 
 License
 -------

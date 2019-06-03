@@ -41,7 +41,7 @@ void SimpleFlyCaptureApp::draw()
 {
 	gl::clear( Color( 0, 1, 0 ) );
 	if (mFlyCaptureConnected) {
-		gl::draw(mFlyCaptureCamera.mCamTexture);
+		gl::draw(mFlyCaptureCamera.getCamTexture());
 	}
 }
 
